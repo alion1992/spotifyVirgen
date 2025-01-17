@@ -18,10 +18,13 @@ class Usuario(models.Model):
     def __str__(self):
         return self.email
 
+class Album(models.Model):
+    nombre = models.CharField(max_length=100)
+
 class Cancion(models.Model):
     titulo = models.CharField(max_length=200)
     artista = models.CharField(max_length=200)
-    album = models.CharField(max_length=200, null=True, blank=True)
+    album = models.ForeignKey(Album,on_delete=models.CASCADE, related_name="album")
     genero = models.CharField(max_length=100, null=True, blank=True)
     duracion = models.IntegerField()
     fecha_lanzamiento = models.DateField()
